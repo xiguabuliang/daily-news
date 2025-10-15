@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日行业资讯 - 2025年10月15日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 2px solid #ff8c00;
+            box-shadow: 0 10px 40px rgba(255, 140, 0, 0.2);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            color: #ff8c00;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
+        }
+        
+        .header .date { font-size: 1.2em; color: #888; }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #ff8c00;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover { transform: translateY(-5px); }
+        
+        .stat-card h3 {
+            color: #ff8c00;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .stat-card .value { font-size: 2em; color: #fff; font-weight: bold; }
+        
+        .news-section { margin: 40px 0; }
+        
+        .section-title {
+            color: #ff8c00;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+        }
+        
+        .news-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #ff8c00 0%, #ff6600 100%);
+        }
+        
+        .news-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.2);
+        }
+        
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .news-source {
+            background: rgba(255, 140, 0, 0.2);
+            color: #ff8c00;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        
+        .news-time { color: #888; font-size: 0.85em; }
+        
+        .news-title {
+            font-size: 1.3em;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .news-title a { color: #fff; text-decoration: none; transition: color 0.3s; }
+        .news-title a:hover { color: #ff8c00; }
+        
+        .news-summary { color: #aaa; margin-bottom: 15px; line-height: 1.8; }
+        
+        .news-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+        
+        .tag {
+            background: rgba(255, 140, 0, 0.1);
+            color: #ff8c00;
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            border: 1px solid rgba(255, 140, 0, 0.3);
+        }
+        
+        .news-link { color: #666; font-size: 0.85em; word-break: break-all; margin-top: 10px; display: block; }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            border-radius: 15px;
+            border: 2px dashed #333;
+        }
+        
+        .empty-state .icon { font-size: 4em; margin-bottom: 20px; opacity: 0.3; }
+        .empty-state p { color: #666; font-size: 1.1em; }
+        
+        .sources-card, .keywords-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .sources-card h2, .keywords-card h2 {
+            color: #ff8c00;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff8c00;
+        }
+        
+        .source-item {
+            padding: 10px 15px;
+            margin: 10px 0;
+            background: rgba(255, 140, 0, 0.1);
+            border-left: 3px solid #ff8c00;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .source-name { color: #fff; font-weight: 500; }
+        .source-count { color: #ff8c00; font-weight: bold; font-size: 1.1em; }
+        
+        .keywords-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        
+        .keyword-tag {
+            background: rgba(255, 140, 0, 0.15);
+            color: #ff8c00;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid rgba(255, 140, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .keyword-tag:hover { background: rgba(255, 140, 0, 0.25); transform: scale(1.05); }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            margin-top: 50px;
+            border-top: 1px solid #333;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .stats-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>📰 今日行业资讯</h1>
+            <div class="date">2025年10月15日 Wednesday</div>
+        </div>
+        
+        <!-- 统计卡片 -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>📊 资讯总数</h3>
+                <div class="value">3</div>
+            </div>
+            <div class="stat-card">
+                <h3>🔍 关键词数</h3>
+                <div class="value">61</div>
+            </div>
+            <div class="stat-card">
+                <h3>📡 新闻源</h3>
+                <div class="value">2</div>
+            </div>
+            <div class="stat-card">
+                <h3>⏱️ 生成时间</h3>
+                <div class="value" style="font-size: 1.2em;">11:04</div>
+            </div>
+        </div>
+        
+        <!-- 资讯内容 -->
+        <div class="news-section">
+            <h2 class="section-title">📰 今日资讯内容</h2>
+
+            <div class="news-card">
+                <div class="news-header">
+                    <span class="news-source">36氪</span>
+                    <span class="news-time">2025-10-15 11:04:49</span>
+                </div>
+                <div class="news-title">
+                    <a href="https://36kr.com/p/3509694626536584?f=rss" target="_blank">1. 8点1氪丨“国考”报考年龄放宽至38周岁以下；陈震透露劳斯莱斯事故原因；苹果客服回应“大量iPhone 17系列新机无法激活”</a>
+                </div>
+                <div class="news-summary">今日热点导览
+  京东回应下场造车：不直接涉及制造
+  南京德基广场设会员专属厕所，需年消费满20万
+  饿了么多地试点取消骑士超时扣款
+  国产小客车新车上牌，不用再跑车管所了
+  严学峰、祝丽丹在宏胜饮料岗位变成“待定”&nbsp;
+  TOP3大新闻
+  “国考”打破35岁门槛，报考年龄放宽至38周岁以下&nbsp;
+  10月14日，《中央机关及其直属机构2026年度考试录用公务员公告》正式发布，共计划招录3.81万人。公告显示</div>
+                <div class="news-tags">
+                    <span class="tag">#京东</span>
+                    <span class="tag">#饿了么</span>
+                </div>
+                <a href="https://36kr.com/p/3509694626536584?f=rss" target="_blank" class="news-link">🔗 https://36kr.com/p/3509694626536584?f=rss</a>
+            </div>
+
+            <div class="news-card">
+                <div class="news-header">
+                    <span class="news-source">36氪</span>
+                    <span class="news-time">2025-10-15 11:04:49</span>
+                </div>
+                <div class="news-title">
+                    <a href="https://36kr.com/p/3508719375768708?f=rss" target="_blank">2. 氪星晚报｜消息称软银旗下支付应用PayPay最早12月赴美上市，估值或超200亿美元；英伟达AI超级计算机DGX Spark™正式交付；全球首个聚变能研究与培训协作中心落地成都</a>
+                </div>
+                <div class="news-summary">大公司：
+  京东旗下七鲜小厨入驻美团、淘宝闪购平台
+  近期，京东旗下七鲜小厨在美团外卖、淘宝闪购等平台上线。据了解，七鲜小厨定位合营品质餐饮制作平台，京东计划3年内在全国建设10000家七鲜小厨。（界面）
+  <a href="https://36kr.com/newsf</div>
+                <div class="news-tags">
+                    <span class="tag">#京东</span>
+                    <span class="tag">#外卖配送</span>
+                    <span class="tag">#美团</span>
+                </div>
+                <a href="https://36kr.com/p/3508719375768708?f=rss" target="_blank" class="news-link">🔗 https://36kr.com/p/3508719375768708?f=rss</a>
+            </div>
+
+            <div class="news-card">
+                <div class="news-header">
+                    <span class="news-source">钛媒体</span>
+                    <span class="news-time">2025-10-15 11:04:50</span>
+                </div>
+                <div class="news-title">
+                    <a href="https://www.tmtpost.com/7721326.html" target="_blank">3. 【钛晨报】李强主持召开经济形势专家和企业家座谈会；入局造车？京东：联合宁德时代、广汽，新车将于11.11期间发布；沃尔玛与OpenAI合作，将在ChatGPT上提供购物功能</a>
+                </div>
+                <div class="news-summary">安世半导体首席财务官担任临时首席执行官，回应被中国商务部出口管制；eSIM暂不开放线上办理，需到营业厅办理开通；2026国考应届硕博年龄放宽到43周岁以下；小马智行港股IPO获备案，全球Robotaxi第一股计划回港上市；市场监管总局批准发布中国首部宜居城市国家标准；京东自营外卖门店“七鲜小厨”上线美团、淘宝App；祝九胜已被采取刑事强制措施；IMF发布最新报告：预计今年全球经济增速为3.2%</div>
+                <div class="news-tags">
+                    <span class="tag">#外卖配送</span>
+                    <span class="tag">#财报</span>
+                    <span class="tag">#市场竞争</span>
+                    <span class="tag">#美团</span>
+                    <span class="tag">#京东</span>
+                    <span class="tag">#政策</span>
+                </div>
+                <a href="https://www.tmtpost.com/7721326.html" target="_blank" class="news-link">🔗 https://www.tmtpost.com/7721326.html</a>
+            </div>
+
+        </div>
+        
+        <!-- 信息来源 -->
+        <div class="sources-card">
+            <h2>📡 信息来源</h2>
+            <div class="source-item">
+                <span class="source-name">36氪 - 科技创业媒体</span>
+                <span class="source-count">2条</span>
+            </div>
+            <div class="source-item">
+                <span class="source-name">虎嗅网 - 商业科技资讯</span>
+                <span class="source-count">0条</span>
+            </div>
+            <div class="source-item">
+                <span class="source-name">艾媒网 - 新经济行业数据</span>
+                <span class="source-count">0条</span>
+            </div>
+            <div class="source-item">
+                <span class="source-name">中国物流网 - 物流行业专业媒体</span>
+                <span class="source-count">0条</span>
+            </div>
+            <div class="source-item">
+                <span class="source-name">亿邦动力 - 电商物流资讯</span>
+                <span class="source-count">0条</span>
+            </div>
+            <div class="source-item">
+                <span class="source-name">中国物流产品网 - 物流产品资讯</span>
+                <span class="source-count">0条</span>
+            </div>
+            <div class="source-item">
+                <span class="source-name">动点科技 - 科技创新媒体</span>
+                <span class="source-count">0条</span>
+            </div>
+        </div>
+        
+        <!-- 监控关键词 -->
+        <div class="keywords-card">
+            <h2>🔑 监控关键词</h2>
+            <div class="keywords-grid">
+                <span class="keyword-tag">同城配送</span>
+                <span class="keyword-tag">即时物流</span>
+                <span class="keyword-tag">同城物流</span>
+                <span class="keyword-tag">本地物流</span>
+                <span class="keyword-tag">快递配送</span>
+                <span class="keyword-tag">外卖配送</span>
+                <span class="keyword-tag">跑腿服务</span>
+                <span class="keyword-tag">代买代送</span>
+                <span class="keyword-tag">最后一公里</span>
+                <span class="keyword-tag">末端配送</span>
+                <span class="keyword-tag">智能配送</span>
+                <span class="keyword-tag">无人配送</span>
+                <span class="keyword-tag">自动驾驶配送</span>
+                <span class="keyword-tag">无人机配送</span>
+                <span class="keyword-tag">配送机器人</span>
+                <span class="keyword-tag">前置仓</span>
+                <span class="keyword-tag">微仓配送</span>
+                <span class="keyword-tag">云仓配送</span>
+                <span class="keyword-tag">闪送</span>
+                <span class="keyword-tag">达达</span>
+                <span class="keyword-tag">蜂鸟配送</span>
+                <span class="keyword-tag">点我达</span>
+                <span class="keyword-tag">UU跑腿</span>
+                <span class="keyword-tag">美团配送</span>
+                <span class="keyword-tag">饿了么配送</span>
+                <span class="keyword-tag">京东到家</span>
+                <span class="keyword-tag">淘鲜达</span>
+                <span class="keyword-tag">顺丰同城</span>
+                <span class="keyword-tag">圆通妈妈</span>
+                <span class="keyword-tag">中通快运</span>
+                <span class="keyword-tag">... 共61个关键词</span>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>自动生成于 2025-10-15 11:04:51 | 科技风格报告 v2.1</p>
+            <p style="margin-top: 10px; color: #ff8c00;">🚀 行业资讯自动采集系统</p>
+        </div>
+    </div>
+</body>
+</html>
